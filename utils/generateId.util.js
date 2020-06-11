@@ -1,3 +1,3 @@
 const uuid = require('uuid');
 
-module.exports = () => uuid.v5();
+module.exports = () => uuid.v4();
