@@ -1,8 +1,8 @@
 'use strict';
 
-const controller = require('./user.controller');
+const controller = require('./controller');
 
-module.exports = Router => {
+module.exports = (Router) => {
   const router = new Router({
     prefix: `/users`,
   });

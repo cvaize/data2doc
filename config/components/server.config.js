@@ -8,6 +8,8 @@ const joi = require('joi');
 const envSchema = joi
   .object({
     NODE_ENV: joi.string().allow(['development', 'production', 'test']),
+    HOST: joi.string(),
+    PROTOKOL: joi.string(),
     PORT: joi.number(),
     API_VERSION: joi.number(),
   })
@@ -28,7 +30,9 @@ const config = {
   isDevelopment: envVars.NODE_ENV === 'development',
   server: {
     port: envVars.PORT || 3000,
-    apiVersion: envVars.API_VERSION || 'v1',
+    protocol: envVars.PROTOKOL || 'http',
+    hostname: envVars.HOSTNAME || 'localhost',
+    apiVersion: envVars.API_VERSION || '1',
   },
 };
 
