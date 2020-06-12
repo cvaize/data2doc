@@ -1,9 +1,20 @@
 'use strict';
 
+const trimObject = require('../../utils/trimObject.util');
+const { user: userModel } = require('../../models');
+
 exports.register = async (ctx) => {
   const { email, password } = ctx.request.body;
-  ctx.assert(email && password, 400, 'The user info is malformed!');
 
-  ctx.status = 201;
-  ctx.body = { ok: true };
+  const frd = trimObject({ email, password });
+
+  const errors = await userModel.validateFrd(frd);
+  if (errors.length) {
+    ctx.status = 400;
+    ctx.body = errors;
+  } else {
+    const user = await userModel.register(frd);
+    ctx.status = 200;
+    ctx.body = { user: user, sessionId: user.generateSessionId() };
+  }
 };

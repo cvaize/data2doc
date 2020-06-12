@@ -15,7 +15,10 @@ const TEST_PASSWORD = 'example@gmail.com';
 describe('Auth', function () {
   it('Register', async function () {
     const data = await request.post(REGISTER_URL, {
-      json: { email: '  ' + TEST_EMAIL + '  ', password: TEST_PASSWORD },
+      json: {
+        email: '  ' + TEST_EMAIL + '  ',
+        password: '  ' + TEST_PASSWORD + '  ',
+      },
     });
     assert.isFalse(!data.user, 'Пользователь не передан');
     assert.isFalse(!data.user.id, 'У пользователя нет ID');
@@ -28,7 +31,10 @@ describe('Auth', function () {
   });
   it('Login', async function () {
     const data = await request.post(LOGIN_URL, {
-      json: { email: '  ' + TEST_EMAIL + '  ', password: TEST_PASSWORD },
+      json: {
+        email: '  ' + TEST_EMAIL + '  ',
+        password: '  ' + TEST_PASSWORD + '  ',
+      },
     });
     assert.isFalse(!data.user, 'Пользователь не передан');
     assert.isFalse(!data.user.id, 'У пользователя нет ID');

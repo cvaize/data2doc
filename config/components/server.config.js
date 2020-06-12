@@ -9,6 +9,7 @@ const envSchema = joi
   .object({
     NODE_ENV: joi.string().allow(['development', 'production', 'test']),
     HOST: joi.string(),
+    APP_TOKEN: joi.string(),
     PROTOKOL: joi.string(),
     PORT: joi.number(),
     API_VERSION: joi.number(),
@@ -29,6 +30,7 @@ const config = {
   isTest: envVars.NODE_ENV === 'test',
   isDevelopment: envVars.NODE_ENV === 'development',
   server: {
+    appToken: envVars.APP_TOKEN,
     port: envVars.PORT || 3000,
     protocol: envVars.PROTOKOL || 'http',
     hostname: envVars.HOSTNAME || 'localhost',
