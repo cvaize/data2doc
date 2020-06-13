@@ -15,14 +15,11 @@ const password = '  ' + test.user.email + '  ';
 
 /**
  * Сценарий тестирования:
- * - Найти и удалить тестовых пользователей №1 и №2
- * - Зарегистрировать тестового пользователя №1 и сохранить данные для сравнения
- * - Зарегистрировать тестового пользователя №2
- * - Войти как тестовый пользователь №1 и сравнить данные отправленные после регистрации
+ * 1) Войти как тестовый пользователь
+ * 2) Отправить тестовые дынные
  */
 
 describe('Auth', function () {
-  let user;
   it('Register', async function () {
     const data = await request.post(REGISTER_URL, {
       json: {
@@ -38,7 +35,6 @@ describe('Auth', function () {
       email.trim(),
       'Email не соответствует переданному',
     );
-    user = data.user;
   });
   it('Login', async function () {
     const data = await request.post(LOGIN_URL, {
@@ -54,16 +50,6 @@ describe('Auth', function () {
       data.user.email,
       email.trim(),
       'Email не соответствует переданному',
-    );
-    assert.equal(
-      data.user.email,
-      user.email,
-      'Email зарегистрированного пользователя не совпадает с Email переданным после входа',
-    );
-    assert.equal(
-      data.user.id,
-      user.id,
-      'Id зарегистрированного пользователя не совпадает с Id переданным после входа',
     );
   });
 });

@@ -51,7 +51,7 @@ module.exports = (sequelize, DataTypes) => {
   user.prototype.getEmail = function () {
     return this.email;
   };
-  user.prototype.generateSessionId = function () {
+  user.prototype.generateJwt = function () {
     return jwt.sign({ id: this.id, email: this.email }, appToken, {
       expiresIn: '1h',
     });

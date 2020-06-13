@@ -15,6 +15,6 @@ exports.register = async (ctx) => {
   } else {
     const user = await userModel.register(frd);
     ctx.status = 200;
-    ctx.body = { user: user, sessionId: user.generateSessionId() };
+    ctx.body = { user: user, jwt: user.generateJwt() };
   }
 };
